@@ -6,7 +6,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-
+void cargarVector(char *Buff, char *nombres);
+// void
+// void
 
 
 int main()
