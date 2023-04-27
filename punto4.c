@@ -57,7 +57,7 @@ int main()
 
 void cargarCliente(Cliente *cliente,int cantClientes)
 {
-    
+    int aux;
     char* Buff;//var auxiliar
     Buff=(char*) malloc(sizeof(char)*100);
     for (int i = 0; i < cantClientes; i++)//Cargar clientes
@@ -71,10 +71,13 @@ void cargarCliente(Cliente *cliente,int cantClientes)
 
         cliente[i].CantidadProductosAPedir=1+rand()%5;
         cliente[i].Productos=(Producto*) malloc(sizeof(Producto)*cliente[i].CantidadProductosAPedir);
+        
         for (int j = 0; j < cliente[i].CantidadProductosAPedir; j++)
         {
+            aux=rand()%5;
             cliente[i].Productos[j].ProductoID=j+1;            
-            cliente[i].Productos[j].TipoProducto=TiposProductos[rand()%5];
+            cliente[i].Productos[j].TipoProducto=(char*) malloc((strlen(TiposProductos[aux])+1)*sizeof(char));
+            cliente[i].Productos[j].TipoProducto=TiposProductos[aux];
             cliente[i].Productos[j].PrecioUnitario=10 + rand()%91;
             cliente[i].Productos[j].Cantidad=1+rand()%10;
         }
@@ -97,7 +100,7 @@ void mostrarCliente(Cliente *cliente, int cantClientes)
             printf("Producto %d:\n\r",cliente[i].Productos[j].ProductoID);
             printf("\tTipo de producto %s\n\r",cliente[i].Productos[j].TipoProducto);
             printf("\tCantidad: %d\n\r",cliente[i].Productos[j].Cantidad);
-            printf("\tPrecio Unitario: %d\n\r",cliente[i].Productos[j].PrecioUnitario);
+            printf("\tPrecio Unitario: %2f\n\r",cliente[i].Productos[j].PrecioUnitario);
         }
     }
 }
